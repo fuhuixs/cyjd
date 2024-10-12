@@ -69,6 +69,16 @@
         <button onclick="playPause('audio2', 'button2')">播放/暂停</button>
     </div>
 
+        <!-- 音频播放器 3 -->
+    <div class="player">
+        <h2>hero_piano</h2>
+        <audio id="audio2" src="hero0714.mp3"></audio>
+        <div class="progress-container" id="progress-container2">
+            <div class="progress-bar" id="progress-bar2"></div>
+        </div>
+        <button onclick="playPause('audio2', 'button2')">播放/暂停</button>
+    </div>
+
     <script>
         function playPause(audioId, buttonId) {
             var audio = document.getElementById(audioId);
