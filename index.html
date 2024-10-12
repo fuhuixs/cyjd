@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义音频播放器</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Heiti SC', 'SimSun', sans-serif;
+        }
+
+        .player {
+            margin-bottom: 20px;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: #ddd;
+            height: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .progress-bar {
+            background-color: #4caf50;
+            height: 100%;
+            width: 0%;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #008cba;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005f6a;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>音频合集</h1>
+
+    <!-- 音频播放器 1 -->
+    <div class="player">
+        <h2>004-刘善人朝阳讲道1</h2>
+        <audio id="audio1" src="004-刘善人朝阳讲道1.mp3"></audio>
+        <div class="progress-container" id="progress-container1">
+            <div class="progress-bar" id="progress-bar1"></div>
+        </div>
+        <button onclick="playPause('audio1', 'button1')">播放/暂停</button>
+    </div>
+
+    <!-- 音频播放器 2 -->
+    <div class="player">
+        <h2>005-刘善人朝阳讲道2</h2>
+        <audio id="audio2" src="005-刘善人朝阳讲道2.mp3"></audio>
+        <div class="progress-container" id="progress-container2">
+            <div class="progress-bar" id="progress-bar2"></div>
+        </div>
+        <button onclick="playPause('audio2', 'button2')">播放/暂停</button>
+    </div>
+
+    <script>
+        function playPause(audioId, buttonId) {
+            var audio = document.getElementById(audioId);
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+
+        function updateProgress(audio, progressBar) {
+            var percentage = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = percentage + "%";
+        }
+
+        function setProgress(audio, progressContainer, e) {
+            const width = progressContainer.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+            audio.currentTime = (clickX / width) * duration;
+        }
+
+        const audios = [
+            { id: 'audio1', progressBar: 'progress-bar1', progressContainer: 'progress-container1' },
+            { id: 'audio2', progressBar: 'progress-bar2', progressContainer: 'progress-container2' }
+        ];
+
+        audios.forEach(audio => {
+            const audioElement = document.getElementById(audio.id);
+            const progressBar = document.getElementById(audio.progressBar);
+            const progressContainer = document.getElementById(audio.progressContainer);
+
+            // 更新进度条
+            audioElement.addEventListener('timeupdate', () => updateProgress(audioElement, progressBar));
+
+            // 拖动进度条
+            progressContainer.addEventListener('click', (e) => setProgress(audioElement, progressContainer, e));
+        });
+    </script>
+
+</body>
+</html>
