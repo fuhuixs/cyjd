@@ -70,23 +70,13 @@
     </div>
 
     <!-- 音频播放器 3 -->
- <div class="player">
-     <h2>hero_piano</h2>
-     <audio id="audio2" src="hero0714.mp3"></audio>
-     <div class="progress-container" id="progress-container2">
-         <div class="progress-bar" id="progress-bar2"></div>
-     </div>
-     <button onclick="playPause('audio2', 'button2')">播放/暂停</button>
- </div>
-
-        <!-- 音频播放器 3 -->
     <div class="player">
-        <h2>hero_piano</h2>
-        <audio id="audio2" src="hero0714.mp3"></audio>
-        <div class="progress-container" id="progress-container2">
-            <div class="progress-bar" id="progress-bar2"></div>
+        <h2>piano_test</h2>
+        <audio id="audio3" src="hero0714.mp3"></audio> <!-- 更改 ID 为 audio3 -->
+        <div class="progress-container" id="progress-container3"> <!-- 更改 ID 为 progress-container3 -->
+            <div class="progress-bar" id="progress-bar3"></div> <!-- 更改 ID 为 progress-bar3 -->
         </div>
-        <button onclick="playPause('audio2', 'button2')">播放/暂停</button>
+        <button onclick="playPause('audio3', 'button3')">播放/暂停</button>
     </div>
 
     <script>
@@ -113,7 +103,8 @@
 
         const audios = [
             { id: 'audio1', progressBar: 'progress-bar1', progressContainer: 'progress-container1' },
-            { id: 'audio2', progressBar: 'progress-bar2', progressContainer: 'progress-container2' }
+            { id: 'audio2', progressBar: 'progress-bar2', progressContainer: 'progress-container2' },
+            { id: 'audio3', progressBar: 'progress-bar3', progressContainer: 'progress-container3' } // 添加 audio3 的配置
         ];
 
         audios.forEach(audio => {
